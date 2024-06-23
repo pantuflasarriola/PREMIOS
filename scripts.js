@@ -1,3 +1,4 @@
+// Generar códigos válidos y de premio
 const validCodes = new Set();
 const usedCodes = new Set();
 const premioCodes = new Set();
@@ -7,6 +8,7 @@ for (let i = 1; i <= 10000; i++) {
     premioCodes.add(`AR${String(i).padStart(4, '0')}`);
 }
 
+// Función para canjear código
 document.getElementById('canjearBtn').addEventListener('click', () => {
     const codigo = document.getElementById('codigo').value.trim();
 
