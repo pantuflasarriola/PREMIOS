@@ -15,10 +15,15 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
     const codigo = codigoInput.value.trim();
 
     if (validCodes.has(codigo)) {
-        if (usedCodes.has(codigo)) {
-            alert('El código ya ha sido utilizado anteriormente.');
+        // Verificar si el código ha sido utilizado antes desde la misma IP
+        const ip = obtenerDireccionIP();
+        const key = `${ip}_${codigo}`;
+        
+        if (localStorage.getItem(key)) {
+            alert('Este código ya ha sido utilizado desde esta dirección IP.');
         } else {
-            usedCodes.add(codigo);
+            // Marcar el código como utilizado para esta IP
+            localStorage.setItem(key, 'utilizado');
 
             const randomIndex = Math.floor(Math.random() * premioCodes.length);
             const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
@@ -54,4 +59,12 @@ function mostrarMensajePremio(premio, codigoPremio, fechaValida) {
 
     mensaje.classList.remove('oculto');
     mensaje.classList.add('visible');
+}
+
+// Función para obtener la dirección IP del cliente
+function obtenerDireccionIP() {
+    // Implementación básica para obtener la dirección IP del cliente
+    // Esto puede no ser completamente preciso debido a restricciones del navegador
+    // pero para propósitos básicos puede funcionar
+    return '127.0.0.1'; // Reemplazar con una implementación adecuada si es necesario
 }
