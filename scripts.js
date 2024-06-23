@@ -16,47 +16,14 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
 
     if (validCodes.has(codigo)) {
         // Verificar si el código ha sido utilizado antes desde la misma IP
-        const ip = obtenerDireccionIP();
+        const ip = obtenerDireccionIP(); // Simulación de la dirección IP real
         const key = `${ip}_${codigo}`;
-        import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import javax.servlet.http.HttpServletRequest;
-
-public class ObtenerIP {
-    public static String obtenerIPUsuario(HttpServletRequest request) {
-        String ipAddress = null;
         
-        try {
-            ipAddress = request.getHeader("X-Forwarded-For");
-            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
-                ipAddress = request.getHeader("Proxy-Client-IP");
-            }
-            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
-                ipAddress = request.getHeader("WL-Proxy-Client-IP");
-            }
-            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
-                ipAddress = request.getRemoteAddr();
-                if (ipAddress.equals("0:0:0:0:0:0:0:1")) {
-                    InetAddress inetAddress = InetAddress.getLocalHost();
-                    ipAddress = inetAddress.getHostAddress();
-                }
-            }
-        } catch (UnknownHostException e) {
-            ipAddress = "Unknown IP";
-        } catch (IOException e) {
-            ipAddress = "Unable to get IP";
-        }
-        
-        return ipAddress;
-    }
-}
-
-        if (localStorage.getItem(key)) {
+        if (usedCodes.has(key)) {
             alert('Este código ya ha sido utilizado desde esta dirección IP.');
         } else {
             // Marcar el código como utilizado para esta IP
-            localStorage.setItem(key, 'utilizado');
+            usedCodes.add(key);
 
             const randomIndex = Math.floor(Math.random() * premioCodes.length);
             const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
@@ -86,18 +53,15 @@ function mostrarMensajePremio(premio, codigoPremio, fechaValida) {
     const codigoCanjeSpan = document.getElementById('codigoCanje');
     const fechaCanjeSpan = document.getElementById('fechaCanje');
 
-    premioSpan.textContent = premio;
-    codigoCanjeSpan.textContent = codigoPremio;
-    fechaCanjeSpan.textContent = fechaValida;
+    premioSpan.textContent = `FELICIDADES HAS OBTENIDO ${premio}`;
+    codigoCanjeSpan.textContent = `CANJE: ${codigoPremio}`;
+    fechaCanjeSpan.textContent = `TOMA CAPTURA PARA CANJEAR TU PREMIO. PROMOCIÓN VÁLIDA DURANTE UN MES DESPUÉS DE LA FECHA DE INGRESO (${fechaValida})`;
 
     mensaje.classList.remove('oculto');
     mensaje.classList.add('visible');
 }
 
-// Función para obtener la dirección IP del cliente
+// Función para obtener la dirección IP del cliente (simulada para propósitos de prueba)
 function obtenerDireccionIP() {
-    // Implementación básica para obtener la dirección IP del cliente
-    // Esto puede no ser completamente preciso debido a restricciones del navegador
-    // pero para propósitos básicos puede funcionar
-    return '127.0.0.1'; // Reemplazar con una implementación adecuada si es necesario
+  
 }
