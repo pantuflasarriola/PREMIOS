@@ -16,7 +16,7 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
 
     if (validCodes.has(codigo)) {
         // Verificar si el código ha sido utilizado antes desde la misma IP
-        const ip = obtenerDireccionIP(); // Simulación de la dirección IP real
+        const ip = obtenerDireccionIP();
         const key = `${ip}_${codigo}`;
         
         if (usedCodes.has(key)) {
@@ -55,15 +55,15 @@ function mostrarMensajePremio(premio, codigoPremio, fechaValida) {
 
     premioSpan.textContent = `FELICIDADES HAS OBTENIDO ${premio}`;
     codigoCanjeSpan.textContent = `CANJE: ${codigoPremio}`;
-    fechaCanjeSpan.textContent = `TOMA CAPTURA PARA CANJEAR TU PREMIO. PROMOCIÓN VÁLIDA DURANTE UN MES DESPUÉS DE LA FECHA DE INGRESO (${fechaValida})`;
+    fechaCanjeSpan.textContent = `TOMA CAPTURA PARA CANJEAR TU PREMIO. PROMOCION VALIDA DURANTE UN MES DESPUES DE LA FECHA DE INGRESO (${fechaValida})`;
 
     mensaje.classList.remove('oculto');
     mensaje.classList.add('visible');
 }
 
-// Función para obtener la dirección IP del cliente
-function obtenerDireccionIP(String ipAddress = obtenerIPUsuario(request);
-System.out.println("La dirección IP del usuario es: " + ipAddress);
-) {
-  
+// Función para obtener la dirección IP del cliente (simulada para propósitos de prueba)
+function obtenerDireccionIP() {
+    // Esta es una implementación simulada para propósitos de prueba
+    // En un entorno real, deberías utilizar un servicio de backend para obtener la IP real
+    return '127.0.0.1'; // IP simulada para pruebas
 }
