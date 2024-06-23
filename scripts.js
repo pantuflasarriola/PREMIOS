@@ -14,29 +14,20 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
     const codigoInput = document.getElementById('codigo');
     const codigo = codigoInput.value.trim();
 
-    if (validCodes.has(codigo)) {
-        // Verificar si el código ha sido utilizado antes desde la misma IP
-        const ip = obtenerDireccionIP(); // Simulación de la dirección IP real
-        const key = `${ip}_${codigo}`;
-        
-        if (usedCodes.has(key)) {
-            alert('Este código ya ha sido utilizado desde esta dirección IP.');
-        } else {
-            // Marcar el código como utilizado para esta IP
-            usedCodes.add(key);
+    if (validCodes.has(codigo) && !usedCodes.has(codigo)) {
+        usedCodes.add(codigo);
 
-            const randomIndex = Math.floor(Math.random() * premioCodes.length);
-            const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
-            const premioGanado = obtenerPremioAleatorio();
+        const randomIndex = Math.floor(Math.random() * premioCodes.length);
+        const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
+        const premioGanado = obtenerPremioAleatorio();
 
-            const fechaActual = new Date();
-            const fechaValida = new Date(fechaActual.setMonth(fechaActual.getMonth() + 1)).toLocaleDateString();
+        const fechaActual = new Date();
+        const fechaValida = new Date(fechaActual.setMonth(fechaActual.getMonth() + 1)).toLocaleDateString();
 
-            mostrarMensajePremio(premioGanado, codigoPremio, fechaValida);
-            codigoInput.value = ''; // Limpiar el campo de código después de canjear
-        }
+        mostrarMensajePremio(premioGanado, codigoPremio, fechaValida);
+        codigoInput.value = ''; // Limpiar el campo de código después de canjear
     } else {
-        alert('Código inválido.');
+        alert('Código inválido o ya utilizado.');
     }
 });
 
@@ -53,15 +44,10 @@ function mostrarMensajePremio(premio, codigoPremio, fechaValida) {
     const codigoCanjeSpan = document.getElementById('codigoCanje');
     const fechaCanjeSpan = document.getElementById('fechaCanje');
 
-    premioSpan.textContent = `FELICIDADES HAS OBTENIDO ${premio}`;
-    codigoCanjeSpan.textContent = `CANJE: ${codigoPremio}`;
-    fechaCanjeSpan.textContent = `TOMA CAPTURA PARA CANJEAR TU PREMIO. PROMOCIÓN VÁLIDA DURANTE UN MES DESPUÉS DE LA FECHA DE INGRESO (${fechaValida})`;
+    premioSpan.textContent = premio;
+    codigoCanjeSpan.textContent = codigoPremio;
+    fechaCanjeSpan.textContent = fechaValida;
 
     mensaje.classList.remove('oculto');
     mensaje.classList.add('visible');
-}
-
-// Función para obtener la dirección IP del cliente (simulada para propósitos de prueba)
-function obtenerDireccionIP() {
-  
 }
