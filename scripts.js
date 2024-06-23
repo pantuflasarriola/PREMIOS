@@ -14,20 +14,24 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
     const codigoInput = document.getElementById('codigo');
     const codigo = codigoInput.value.trim();
 
-    if (validCodes.has(codigo) && !usedCodes.has(codigo)) {
-        usedCodes.add(codigo);
+    if (validCodes.has(codigo)) {
+        if (usedCodes.has(codigo)) {
+            alert('El código ya ha sido utilizado anteriormente.');
+        } else {
+            usedCodes.add(codigo);
 
-        const randomIndex = Math.floor(Math.random() * premioCodes.length);
-        const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
-        const premioGanado = obtenerPremioAleatorio();
+            const randomIndex = Math.floor(Math.random() * premioCodes.length);
+            const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
+            const premioGanado = obtenerPremioAleatorio();
 
-        const fechaActual = new Date();
-        const fechaValida = new Date(fechaActual.setMonth(fechaActual.getMonth() + 1)).toLocaleDateString();
+            const fechaActual = new Date();
+            const fechaValida = new Date(fechaActual.setMonth(fechaActual.getMonth() + 1)).toLocaleDateString();
 
-        mostrarMensajePremio(premioGanado, codigoPremio, fechaValida);
-        codigoInput.value = ''; // Limpiar el campo de código después de canjear
+            mostrarMensajePremio(premioGanado, codigoPremio, fechaValida);
+            codigoInput.value = ''; // Limpiar el campo de código después de canjear
+        }
     } else {
-        alert('Código inválido o ya utilizado.');
+        alert('Código inválido.');
     }
 });
 
