@@ -18,7 +18,40 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
         // Verificar si el código ha sido utilizado antes desde la misma IP
         const ip = obtenerDireccionIP();
         const key = `${ip}_${codigo}`;
+        import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import javax.servlet.http.HttpServletRequest;
+
+public class ObtenerIP {
+    public static String obtenerIPUsuario(HttpServletRequest request) {
+        String ipAddress = null;
         
+        try {
+            ipAddress = request.getHeader("X-Forwarded-For");
+            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getHeader("Proxy-Client-IP");
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getHeader("WL-Proxy-Client-IP");
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getRemoteAddr();
+                if (ipAddress.equals("0:0:0:0:0:0:0:1")) {
+                    InetAddress inetAddress = InetAddress.getLocalHost();
+                    ipAddress = inetAddress.getHostAddress();
+                }
+            }
+        } catch (UnknownHostException e) {
+            ipAddress = "Unknown IP";
+        } catch (IOException e) {
+            ipAddress = "Unable to get IP";
+        }
+        
+        return ipAddress;
+    }
+}
+
         if (localStorage.getItem(key)) {
             alert('Este código ya ha sido utilizado desde esta dirección IP.');
         } else {
