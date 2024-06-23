@@ -3,9 +3,9 @@ const validCodes = new Set();
 const usedCodes = new Set();
 const premioCodes = [];
 
-for (let i = 1; i <= 10000; i++) {
-    validCodes.add(`prem${String(i).padStart(4, '0')}`);
-    premioCodes.push(`AR${String(i).padStart(4, '0')}`);
+for (let i = 100; i <= 100000; i++) {
+    validCodes.add(`prem${i}`);
+    premioCodes.push(`AR${String(i).padStart(5, '0')}`);
 }
 
 // Función para canjear código
@@ -17,11 +17,13 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
 
         const randomIndex = Math.floor(Math.random() * premioCodes.length);
         const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
+        const premios = ["10% de descuento", "5% de descuento", "Regalo Sorpresa"];
+        const premioGanado = premios[Math.floor(Math.random() * premios.length)];
 
         const fechaActual = new Date();
         const fechaValida = new Date(fechaActual.setMonth(fechaActual.getMonth() + 1)).toLocaleDateString();
 
-        document.getElementById('premio').textContent = `¡Un increíble premio!`;
+        document.getElementById('premio').textContent = premioGanado;
         document.getElementById('codigoCanje').textContent = codigoPremio;
         document.getElementById('fechaCanje').textContent = fechaValida;
 
