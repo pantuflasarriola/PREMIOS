@@ -13,7 +13,7 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
     const codigo = document.getElementById('codigo').value.trim();
 
     if (validCodes.has(codigo) && !usedCodes.has(codigo)) {
-        usedCodes.add(codigo);
+        usedCodes.add(codigo); // Agregar el código a los usados para no permitir reutilización
 
         const randomIndex = Math.floor(Math.random() * premioCodes.length);
         const codigoPremio = premioCodes.splice(randomIndex, 1)[0];
