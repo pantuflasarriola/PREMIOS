@@ -27,7 +27,7 @@ document.getElementById('canjearBtn').addEventListener('click', () => {
         mostrarMensajePremio(premioGanado, codigoPremio, fechaValida);
         codigoInput.value = ''; // Limpiar el campo de código después de canjear
     } else {
-        alert('Código inválido o ya utilizado.');
+        alert('Código inválido o ya utilizado. ');
     }
 });
 
