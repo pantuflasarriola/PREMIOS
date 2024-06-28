@@ -36,14 +36,14 @@ input {
 }
 
 button {
-    background-color: #00fbfe; /* Azul */
+    background-color: #e74c3c; /* Rojo */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0291ff; /* Azul más oscuro al pasar el mouse */
+    background-color: #c0392b; /* Rojo más oscuro al pasar el mouse */
 }
 
 .mensaje {
@@ -51,7 +51,7 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(201, 255, 208, 0.5); /* Verde con transparencia */
+    background-color: rgba(39, 174, 96, 0.5); /* Verde con transparencia */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
