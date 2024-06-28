@@ -29,21 +29,21 @@ input, button {
 
 input {
     width: 300px;
-    background-color: rgba(52, 73, 94, 0.5); /* Azul más oscuro con transparencia */
+    background-color: rgba(0, 0, 0, 0.5); /* Azul más oscuro con transparencia */
     color: white;
     border: 1px solid #7fff00; /* Bordes de color verde */
     backdrop-filter: blur(5px); /* Efecto de desenfoque */
 }
 
 button {
-    background-color: #00ccf0; /* Rojo */
+    background-color: #00ccf0; /* Azul */
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0076fb; /* Rojo más oscuro al pasar el mouse */
+    background-color: #0076fb; /* Azul más oscuro al pasar el mouse */
 }
 
 .mensaje {
