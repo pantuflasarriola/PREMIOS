@@ -12,7 +12,7 @@ for (let i = 100; i <= 100000; i++) {
 // Función para canjear código
 document.getElementById('canjearBtn').addEventListener('click', () => {
     const codigoInput = document.getElementById('codigo');
-    const codigo = codigoInput.value.trim();
+    const codigo = codigoInput.value.trim().toLowerCase(); // Convertir a minúsculas
 
     if (validCodes.has(codigo) && !usedCodes.has(codigo)) {
         usedCodes.add(codigo);
@@ -46,7 +46,7 @@ function mostrarMensajePremio(premio, codigoPremio, fechaValida) {
 
     premioSpan.textContent = premio;
     codigoCanjeSpan.textContent = codigoPremio;
-    fechaCanjeSpan.textContent = fechaValida;
+    fechaCanjeSpan.textContent = `Promoción válida hasta el día ${fechaValida}`; // Mensaje con texto
 
     mensaje.classList.remove('oculto');
     mensaje.classList.add('visible');
